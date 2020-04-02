@@ -28,21 +28,22 @@
 
 <div *ngIf="historyExchangeCurrency">
 
-                  <table>
-                    <tr>
-                      <th>Month1</th>
-                      <th>Month2</th>
-                      <th>Month3</th>
-                      
-                    </tr>
-                    <tr *ngFor="let item of historyExchangeCurrencyResult">
-                        <td>{{item.GBP}}</td>
-                      <td>{{item.USD}}</td>
-                      <td>{{item.HKG}}</td>
-                    </tr>
-                  </table>
-                
-              
+        <table border=1>
+        <thead>
+          <tr>
+            <th *ngFor="let d of dates">
+              {{d}}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows">
+            <td *ngFor="let col of row">
+              {{col}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
             
 </div>
   <div>

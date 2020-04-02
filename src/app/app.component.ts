@@ -17,6 +17,11 @@ export class AppComponent {
     currentExchangeCurrency = false;
     historyExchangeCurrency=false;
     historyExchangeCurrencyResult=[];
+     o : any[];
+    dA = [];
+    dates = ['Currency'];
+    rows = [];
+
   ngOnInit() {
     
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa("admin" + ':' + "password") });
@@ -33,13 +38,32 @@ export class AppComponent {
     }
 
     historyCurrency(){
+
       let historyCurrencyUrl = "http://localhost:8080/exchangeService/historyRates";
 
       this.http.get(historyCurrencyUrl).subscribe( (data: any) => {
         if(data!=null){
-          this.historyExchangeCurrencyResult=data.rates;
+
+          this.o  = data.map( el => JSON.parse(el))
+          this.o.forEach( l => {
+          let {rates} = l;
+          this.dates.push(l.date)
+          for(let j in rates) {
+            if(this.dA[j]) {
+              this.dA[j].push(rates[j]);
+              }
+          else {
+            this.dA[j] = [j, rates[j]];
+          }
+      }
+    
+});
+
+    for(let i in this.dA) {
+      this.rows.push(this.dA[i]);
+      }
           this.historyExchangeCurrency=true;
-          this.currentExchangeCurrency=false;
+          this.currentExchangeCurrency=true;
         }});
   
 
