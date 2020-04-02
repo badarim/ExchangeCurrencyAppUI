@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "exchangeCurrencyApp"
+    }
+  },
+  "defaultProject": "exchangeCurrencyApp",
+  "cli": {
+    "analytics": "f7e31613-5615-4f91-877b-d679f35a5363"
+  }
 }
