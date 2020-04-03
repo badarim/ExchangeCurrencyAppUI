@@ -21,12 +21,19 @@ export class AppComponent {
     dA = [];
     dates = ['Currency'];
     rows = [];
+    
 
   ngOnInit() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Basic ' + btoa('admin:password')
+      })
+    };
     
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa("admin" + ':' + "password") });
+   // const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa("admin" + ':' + "password") });
 
-    this.http.get(this.restItemsUrl,{headers}).subscribe( (data: any) => {
+    this.http.get(this.restItemsUrl,httpOptions).subscribe( (data: any) => {
       if(data!=null){
         this.result=data.rates;
       this.currentExchangeCurrency=true;
@@ -39,9 +46,16 @@ export class AppComponent {
 
     historyCurrency(){
 
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json',
+          'Authorization': 'Basic ' + btoa('admin:password')
+        })
+      };
+      
       let historyCurrencyUrl = "http://localhost:8080/exchangeService/historyRates";
 
-      this.http.get(historyCurrencyUrl).subscribe( (data: any) => {
+      this.http.get(historyCurrencyUrl,httpOptions).subscribe( (data: any) => {
         if(data!=null){
 
           this.o  = data.map( el => JSON.parse(el))

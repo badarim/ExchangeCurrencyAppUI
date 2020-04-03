@@ -1,7 +1,8 @@
 <H1>Welcome to Exchange Currency Application</H1>
 
 <div *ngIf="currentExchangeCurrency">
-    <div ><table border="1" width =60%>
+  <h4>Current Currency Exchange Rate </h4>
+    <div ><table border="1" >
     <thead>
       <tr>
         <th>GBP</th>
@@ -20,13 +21,12 @@
 </div>
   <br>
 <br>
-<br>
-<br>
 
 
 
 
 <div *ngIf="historyExchangeCurrency">
+    <h4>History Currency Exchange Rate(Last 6 Months) </h4>
 
         <table border=1>
         <thead>
@@ -46,7 +46,4 @@
       </table>
             
 </div>
-  <div>
-        <button (click)=historyCurrency() class="btn btn-success">HistoryCurrencyExchange</button>
-
-  </div>
+  
